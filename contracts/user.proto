@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./contracts;userpb";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service UserService {
+  rpc UpdateFCMToken (UpdateFCMTokenRequest) returns (google.protobuf.Empty);
+  rpc GetUsers (GetUsersRequest) returns (GetUsersResponse) {
+    option(google.api.http) = {
+      get: "/users",
+    };
+  }
+  rpc GetUser (GetUserRequest) returns (User);
+  rpc CreateUser (CreateUserRequest) returns (User);
+  rpc UpdateUser (UpdateUserRequest) returns (User);
+  rpc DeleteUser (DeleteUserRequest) returns (google.protobuf.Empty);
+}
+
+message User {
+  uint64 id = 1;
+  string user_login = 2;
+  string user_pass = 3;
+  string user_nicename = 4;
+  string user_email = 5;
+  string user_url = 6;
+  google.protobuf.Timestamp user_registered = 7;
+  string activation_key = 8;
+  int32 user_status = 9;
+  string display_name = 10;
+  optional string fcm_token = 11;
+  optional google.protobuf.Timestamp last_login_at = 12;
+  optional google.protobuf.Timestamp created_at = 13;
+  optional google.protobuf.Timestamp updated_at = 14;
+  optional google.protobuf.Timestamp deleted_at = 15;
+  string role = 16;
+}
+
+message UpdateFCMTokenRequest {
+  uint64 user_id = 1;
+  string fcm_token = 2;
+}
+
+message GetUsersRequest {
+  optional string search = 1;
+  int32 page = 2;
+  int32 per_page = 3;
+}
+
+message GetUsersResponse {
+  repeated User data = 1;
+  PaginationMeta meta = 2;
+}
+
+message PaginationMeta {
+  int32 page = 1;
+  int32 per_page = 2;
+  int64 total = 3;
+  int32 total_pages = 4;
+}
+
+message GetUserRequest {
+  uint64 id = 1;
+}
+
+message CreateUserRequest {
+  string email = 1;
+  string password = 2;
+  string phone = 3;
+  string name = 4;
+  int32 activate_access = 5;
+  string role = 6;
+}
+
+message UpdateUserRequest {
+  uint64 id = 1;
+  optional string email = 2;
+  optional string password = 3;
+  optional string phone = 4;
+  optional string name = 5;
+  optional int32 activate_access = 6;
+  optional string role = 7;
+  optional string fcm_token = 8;
+}
+
+message DeleteUserRequest {
+  uint64 id = 1;
+}

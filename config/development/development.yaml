@@ -1,0 +1,165 @@
+# Application
+app:
+  name: Boilerplate
+  env: development
+  debug: true
+  timezone: UTC
+  url: http://localhost
+  locale: en
+  fallback_locale: en
+  faker_locale: en_US
+  maintenance_driver: file
+  bcrypt_rounds: 12
+  port: 8080
+  grpc:
+    port: 8082
+    http_route_prefix: "/v1"
+  request:
+    timeout: 100
+    max_conn: 10
+    vol_threshold: 20
+    sleep_window: 5000
+    err_threshold: 50
+
+# Logging
+log:
+  channel: stack
+  stack: single
+  deprecations_channel: null
+  level: debug
+
+health_check:
+  route:
+    group: "/health"
+    live: "/live"
+    ready: "/ready"
+  goroutine_threshold: 100
+
+# Database
+database:
+  connection: mysql
+  host: 127.0.0.1
+  port: 3306
+  name: boilerplate
+  username: root
+  password: ""
+  dsn: ""
+  auto_migrate: "off"
+  logEnabled: true
+  logLevel: 3
+  logThreshold: 200
+
+# Caching
+cache:
+  store: database
+  prefix: ""
+
+# Redis
+redis:
+  client: predis
+  host: 127.0.0.1
+  password: null
+  port: 6379
+
+# Queue
+queue:
+  connection: sync
+
+# Mail
+mail:
+  driver: smtp
+  host: smtp.example.com
+  port: 587
+  encryption: tls
+  username: your-email@example.com
+  password: your-password
+  from_address: noreply@example.com
+  from_name: ""
+
+# WooCommerce
+woocommerce:
+  url: http://example.com
+  store_url: http://example.com/wp-json
+  consumer_key: ""
+  consumer_secret: ""
+  wcfmp_username: ""
+  wcfmp_password: ""
+
+# AWS
+aws:
+  access_key_id: ""
+  secret_access_key: ""
+  region: ap-southeast-1
+  bucket: ""
+  photo_url: ""
+
+# Google Drive
+google_drive:
+  client_id: ""
+  client_secret: ""
+  refresh_token: ""
+  folder: ""
+
+# OneBrick
+onebrick:
+  client_id: ""
+  client_secret: ""
+  base_url: ""
+  platform_fee: 0
+  vat_amount: 0
+
+# Backoffice
+backoffice_url: http://localhost:3000
+
+# Firebase
+firebase:
+  project_id: ""
+
+# RabbitMQ
+rabbitmq:
+  host: ""
+  port: 5672
+  user: ""
+  password: ""
+  vhost: "/"
+
+# OFD Sync
+ofd_sync_delay: 10
+
+# Scout
+scout:
+  driver: ""
+  prefix: ""
+  queue: ""
+  identify: ""
+
+# Sentry
+sentry:
+  dsn:
+  log_level:
+
+# Machinery
+machinery:
+  broker_dsn: ""
+  broker:
+    retries: 2
+    retry_delay: 10
+    timeout: 100
+    max_conn: 10
+    vol_threshold: 20
+    sleep_window: 5000
+    err_per_threshold: 50
+  default_queue: ""
+  result_backend_dsn: ""
+  exchange: ""
+  exchange_type: ""
+  binding_key: ""
+  consumer:
+    enable: 0
+    tag: ""
+    concurrent_tasks: 10
+    prefetch_count: 1
+
+# Microservices
+services:
+  user_svc: 0.0.0.0:8081
