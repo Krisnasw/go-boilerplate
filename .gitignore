@@ -1,0 +1,30 @@
+# generate gitignore for golang
+.DS_Store
+.idea
+.vscode
+.env
+
+# Docker
+data/*
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.pb.go
+*.pb.gw.go
+*.swagger.json
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dep
+vendor/*
+
+# Go workspace file
+go.work
